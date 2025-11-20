@@ -23,14 +23,9 @@ dnf5 install -y tmux
 # Detecting Fedora version from the image
 FEDORA_VERSION=$(rpm -E %fedora)
 
-cat << EOF > /etc/yum.repos.d/microsoft-prod.repo
-[microsoft-prod]
-name=Microsoft Prod repo
-baseurl=https://packages.microsoft.com/config/fedora/${FEDORA_VERSION}/prod.repo
-enabled=1
-gpgcheck=1
-gpgkey=https://packages.microsoft.com/keys/microsoft.asc
-EOF
+# Download the repo file directly
+curl -o /etc/yum.repos.d/microsoft-prod.repo \
+    https://packages.microsoft.com/config/fedora/${FEDORA_VERSION}/prod.repo
 
 # Importing the key
 rpm --import https://packages.microsoft.com/keys/microsoft.asc
