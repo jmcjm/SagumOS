@@ -30,8 +30,21 @@ curl -o /etc/yum.repos.d/microsoft-prod.repo \
 # Importing the key
 rpm --import https://packages.microsoft.com/keys/microsoft.asc
 
+### Workaround: Mock systemctl dla instalacji mdatp w kontenerze
+# mdatp post-install próbuje uruchomić daemon, co nie działa w kontenerze buildowym
+cat > /usr/local/bin/systemctl << 'EOF'
+#!/bin/bash
+echo "[Mock systemctl] $*"
+exit 0
+EOF
+chmod +x /usr/local/bin/systemctl
+export PATH="/usr/local/bin:$PATH"
+
 # Installing
 dnf5 install -y mdatp
+
+### Przywróć prawdziwy systemctl
+rm /usr/local/bin/systemctl
 
 ### Adding Google Chrome repo
 cat << 'EOF' > /etc/yum.repos.d/google-chrome.repo
