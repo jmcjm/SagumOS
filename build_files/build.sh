@@ -60,28 +60,27 @@ dnf5 install -y ripgrep
 dnf5 install -y sl
 
 # Git utilities
-dnf5 install -y git-delta  # lepszy diff viewer
-dnf5 install -y lazygit    # TUI dla gita
+dnf5 install -y git-delta
 
 # Build tools
-dnf5 install -y clang clang-tools-extra
+# dnf5 install -y clang clang-tools-extra
 
 # Database clients
-dnf5 install -y postgresql
+# dnf5 install -y postgresql
 
 # Network tools
-dnf5 install -y httpie
-dnf5 install -y jq
-dnf5 install -y yq
+# dnf5 install -y httpie
+# dnf5 install -y jq
+# dnf5 install -y yq
 
 # Better shell tools
-dnf5 install -y zoxide
-dnf5 install -y bat
-dnf5 install -y eza
-dnf5 install -y fd-find
+# dnf5 install -y zoxide
+# dnf5 install -y bat
+# dnf5 install -y eza
+# dnf5 install -y fd-find
 
-dnf5 install -y btop
-dnf5 install -y iotop
+# dnf5 install -y btop
+# dnf5 install -y iotop
 
 dnf5 clean all
 
